@@ -32,9 +32,9 @@ namespace UltraJars
         {
             player = GetComponent<MainPlayer>();
             character = gameObject.AddComponent<CharacterController>();
-            character.height = 1;
-            character.radius = .15f;
-            character.center = new Vector3(0, .6f, 0);
+            character.height = .1f;
+            character.radius = .0000001f;
+            character.center = new Vector3(0, .1f, 0);
 
             /*var cam = new GameObject("UJSmoothCam");
             cam.AddComponent<Camera>();
