@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
 using Valve.VR;
 
 namespace UltraJars
@@ -23,7 +24,7 @@ namespace UltraJars
 
     class SmoothController : MonoBehaviour
     {
-        float speed = 6;
+        float speed = 4;
         float airSpeed = 2.5f;
         CharacterController character;
         MainPlayer player;
@@ -33,7 +34,7 @@ namespace UltraJars
             player = GetComponent<MainPlayer>();
             character = gameObject.AddComponent<CharacterController>();
             character.height = .1f;
-            character.radius = .0000001f;
+            character.radius = .01f;
             character.center = new Vector3(0, .1f, 0);
 
             /*var cam = new GameObject("UJSmoothCam");
@@ -42,8 +43,18 @@ namespace UltraJars
             smoothCam.target = player.Head.transform;*/
         }
 
+        float onMeshThreshold = 1;
         void Update()
         {
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(gameObject.transform.position, out hit, 2, NavMesh.AllAreas))
+            {
+                var onMesh = hit.position.y < gameObject.transform.position.y &&
+                    Vector3.Distance(hit.position, gameObject.transform.position) <= onMeshThreshold;
+
+                if (!onMesh) transform.position = hit.position;
+            }
+
             var stick = SteamVR_Actions.farbridge_worlds_thumb_position.GetAxis(SteamVR_Input_Sources.LeftHand);
             //Melon<UltraJarsMelon>.Logger.Msg($"{stick.x} {stick.y}");
             Quaternion headYaw = Quaternion.Euler(0, player.Head.transform.rotation.eulerAngles.y, 0);
