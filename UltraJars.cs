@@ -4,5 +4,8 @@ using Valve.VR;
 
 namespace UltraJars
 {
-    public class UltraJarsMelon : MelonMod { }
+    public class UltraJarsMelon : MelonMod
+    {
+        
+    }
 }

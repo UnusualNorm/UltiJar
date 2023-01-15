@@ -32,7 +32,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="SmoothCam.cs" />
-    <Compile Include="SmoothController.cs" />
+    <Compile Include="SmoothTurn.cs" />
+    <Compile Include="SmoothLocomotion.cs" />
     <Compile Include="UltraJars.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

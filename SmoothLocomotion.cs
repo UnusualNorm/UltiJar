@@ -17,12 +17,12 @@ namespace UltraJars
     {
         static void Postfix(MainPlayer __instance)
         {
-            if (!__instance.gameObject.GetComponent<SmoothController>())
-                __instance.gameObject.AddComponent<SmoothController>();
+            if (!__instance.gameObject.GetComponent<SmoothLocomotion>())
+                __instance.gameObject.AddComponent<SmoothLocomotion>();
         }
     }
 
-    class SmoothController : MonoBehaviour
+    class SmoothLocomotion : MonoBehaviour
     {
         float speed = 4;
         float airSpeed = 2.5f;
